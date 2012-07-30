@@ -1,0 +1,199 @@
+.body {
+	/*overflow:hidden;*/
+	background:url('../img/bg_lines.png') repeat;
+	background-color:#EDEDED;
+	font-family:Arial;
+	text-align:center;
+	z-index:1;
+}
+
+
+/* Mark button */
+
+.mark_btn{
+	cursor:pointer;
+	z-index:2;
+	-moz-box-shadow:  3px 3px 5px 0px #000;
+	-webkit-box-shadow:  3px 3px 5px 0px #000;
+	box-shadow:  3px 3px 5px 0px #000;
+}
+
+.pressed{
+	-moz-box-shadow: inset 3px 3px 5px 6px #000;
+	-webkit-box-shadow: inset 3px 3px 5px 6px #000;
+	box-shadow: inset 3px 3px 5px 6px #000;
+	opacity:0.3;
+
+}
+
+
+
+#title {
+	margin-top:24px;
+	background:grey;
+}
+.sub-title {
+	text-align:center;
+	font-family:Comic Sans MS;
+	color:#ffffff;
+	font-size:small;
+	height:50px;
+	line-height:50px;
+	
+}
+
+
+
+#title img {
+	width:55%;
+}
+#container {
+	position:relative;
+	width:960px; /* use jQuery to setup */
+	height:auto;
+	margin: 0px auto;
+	z-index:1;
+}
+
+#content{
+	width:100%;
+	height:500px;
+	background-color:#ffffff;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	border-top-left-radius:10px;
+	@border-bottom-left-radius:50px;
+	@border-bottom-right-radius:70px;
+	overflow: auto;
+	z-index:1;
+	position: relative;
+}
+.text{
+	text-align:left;
+	
+	
+	
+	width:85%;
+	
+	
+}
+
+#help{
+	left:500px;
+	position:relative;
+	float:left;
+}
+
+.tag{
+	
+	
+	/*border:solid 1px #000;*/
+	
+	
+	
+}
+
+
+.odd_col {
+	background:#FFFAF0;	
+}
+
+.even_col{
+	background:#FFF68F;
+}
+/*-------------------------------------- BOTTOM ---------------------------------------*/
+#bot{
+	margin-top:24px;
+	margin-bottom:24px;
+}
+#bot a { color:#777; }
+#bot a:hover { color:#444; }
+#bot a:active { color:red;}
+
+
+/*-------------------------- load box --------------------------*/
+
+#load:hover {
+	background-color:#FF0000;
+	color:#FFF;
+	
+}
+#load {
+	/*padding:10px auto 10px auto;*/
+	/*margin-left:5px;*/
+	cursor:pointer;
+	float:right;
+	line-height:26px;
+	background-color:#CCC;
+	border:3px double transparent;
+	color:#222;
+	font-weight:bold;
+	float:right;
+}
+/*------------------------- login ---------------------*/
+#login:hover {
+	background-color:#FF0000;
+	color:#FFF;
+}
+#login {
+	cursor:pointer;
+	float:right;
+	line-height:26px;
+	background-color:#CCC;
+	border:3px double transparent;
+	color:#222;
+	font-weight:bold;
+	float:right;
+	position:absolute;
+	right:0px;
+	bottom:0px;
+}
+.data_to_tagged{
+	font-size:18px;
+	float:left;
+}
+#prev{
+	cursor: pointer;
+	float:left;
+	background:#BDB76B;
+	margin: 10px 10px 10px 10px;
+}
+#prev:hover{
+	background:#EEE8AA;
+}
+#next{
+	cursor: pointer;
+	float:left;
+	background:#FAFAD2;
+	margin: 10px 10px 10px 10px;
+}#next:hover{
+	background:#FFFF00;
+}
+#now_page{
+	margin: 10px 10px 10px 10px;
+	float:left;
+	color:red;
+}
+#overall{
+	display:none;
+	float:right;
+}
+#article_title{
+	float:left;
+}
+#count{
+	display:block;
+	float:left;
+}
+#hidden{
+	display:none;
+}
+.candidates{
+	height:20px;
+	background:red;
+}
+
+#showUsername{
+
+}
