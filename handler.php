@@ -16,8 +16,8 @@
 $uid=validation();
 if(validation())
 	$user = new User( $uid );
-else
-	die("");
+//else
+//	die("");
 
 // Get posts from database
 if($_GET['method']=="insert"){
@@ -41,6 +41,7 @@ else if($_GET['method']=="markAsDone"){
 	echo 1;
 }
 else if($_GET['method']=="addUser"){
+
 	try {
 		$db_user = new PDO('sqlite:User.db');
 	} catch (Exception $e) {
@@ -50,7 +51,8 @@ else if($_GET['method']=="addUser"){
 	$passwd = $_GET['passwd'];
 	$email = $_GET['email'];
 
-	$cur = $db_user->prepare("REPLACE INTO User ( Username , Passwd , Email ) VALUES ( ? , ? , ? )");
+	$cur = $db_user->prepare("REPLACE INTO User(Username,Passwd,Email) VALUES ( ? , ? , ? )");
+	
 	$cur->bindParam(1, $uname);
 	$cur->bindParam(2, $passwd);
 	$cur->bindParam(3, $email);
@@ -59,6 +61,7 @@ else if($_GET['method']=="addUser"){
 	} catch (Exception $e) {
 		die ($e);
 	}
+	//header("Location:index.php");
 	header("Location:adduser.php?msg=User ".$uname." added!");
 	exit;
 
@@ -75,12 +78,12 @@ function error_msg( $msg ){
 // For debug
 function print_all(){
     try {
-        $pdo = new PDO('sqlite:Mobile.db');
+        $pdo = new PDO('sqlite:Baby.seg.db');
     } catch (Exception $e) {
         die ($e);
     }
 	// SELECT pid,cid,content FROM PDA_HTC_Comments
-	$cur = $pdo->prepare("SELECT B.content, A.Type, A.Annotation , A.UID FROM Comment_Note A, PDA_HTC_Comments B WHERE B.cid=A.CommentSn;");
+	$cur = $pdo->prepare("SELECT B.content, A.Type, A.Annotation , A.UID FROM Comment_Note A, PDA_HTC_Comments_New B WHERE B.cid=A.CommentSn;");
 	// $cur = $pdo->prepare("SELECT A.CommentSn, A.Type, A.Annotation  FROM Comment_Note A WHERE A.CommentSn = 35008265;");
 
 	try {

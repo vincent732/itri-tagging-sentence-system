@@ -21,7 +21,7 @@ class User{
 		$this->__uid = $u;
 		
 		try {
-			$this->__db_mobile = new PDO('sqlite:Mobile.db');
+			$this->__db_mobile = new PDO('sqlite:Baby.seg.db');
 		} catch (Exception $e) {
 			die ($e);
 		}
@@ -79,12 +79,35 @@ class User{
 	
 	public function add_annotation( $commentsn , $type , $anno ){
 		
-		$cur = $this->__db_mobile->prepare("REPLACE INTO Comment_Note ( CommentSn , Type , Annotation , UID ) VALUES ( ? , ? , ? , ? )");
+		//先判斷是否已經存在，先刪除後再insert
+		/*$cSn = $this->__db_mobile->prepare('select CommentSn,Type From Comment_Note where CommentSn = ?');
+		$cSn->bindParam(1, $commentsn, PDO::PARAM_INT);
+		try{
+			$cSn->execute();
+		}catch (Exception $e) {
+			die ($e);
+		}
+		$coSn = $cSn->fetch(PDO::FETCH_ASSOC);
+		$commSn = $coSn['CommentSn'];
+		$commType = $coSn['Type'];
+		if($commSn == $commentsn and $type == $commType){//已經存在
+			$cur = $this->__db_mobile->prepare('Delete From Comment_Note where CommentSn = ? and Type=?');
+			$cur->bindParam(1, $commentsn, PDO::PARAM_INT);
+			$cur->bindParam(2, $commType, PDO::PARAM_INT);
+			try{
+				$cur->execute();
+			}catch (Exception $e) {
+				die ($e);
+			}
+		}
+		//開始insert
+		*/
+		$cur = $this->__db_mobile->prepare("REPLACE INTO Comment_Note ( CommentSn , Type , Annotation , UID, date ) VALUES ( ? , ? , ? , ?, ?)");
 		$cur->bindParam(1, $commentsn, PDO::PARAM_INT);
 		$cur->bindParam(2, $type, PDO::PARAM_INT);
 		$cur->bindParam(3, $anno, PDO::PARAM_INT);
 		$cur->bindParam(4, $this->__uid, PDO::PARAM_INT);
-		// $cur->bindParam(5, date("Y-m-d H:i:s") );
+		$cur->bindParam(5, date("Y-m-d H:i:s") );
 		
 		try {
 			$cur->execute();
@@ -104,6 +127,7 @@ class User{
 
 		// Get posts from database
 		try {
+			//判斷是否有上次尚未標記完的post
 			$posts = $this->__db_mobile->prepare("SELECT PostSn FROM UserState WHERE State=1 AND UID=? GROUP BY PostSn LIMIT 1");			
 			$posts->bindParam( 1, $this->__uid , PDO::PARAM_INT );
 			$posts->execute();
@@ -113,6 +137,7 @@ class User{
 			// echo $postSn;
 			
 			if($postSn==""){
+				//如果沒有，取出新的Post
 				$posts = $this->__db_mobile->prepare("SELECT PostSn FROM UserState WHERE State=0 LIMIT 1");
 				$posts->execute();
 				
@@ -125,9 +150,9 @@ class User{
 			
 			// $posts = $db->prepare("SELECT PDA_HTC_Comments.pid,PDA_HTC_Comments.cid,PDA_HTC_Comments.content FROM PDA_HTC_Comments, UserState where PDA_HTC_Comments.cid = UserState.CommentSn and UserState.State==0 and UserState.PostSn = ?");
 			// $posts = $this->__db_mobile->prepare("SELECT A.pid,A.cid,A.content FROM PDA_HTC_Comments A, UserState B WHERE A.pid = ? AND B.State!=2");
-			$posts = $this->__db_mobile->prepare("SELECT A.pid,A.cid,A.content FROM PDA_HTC_Comments_new A, UserState B WHERE A.cid=B.CommentSn AND B.postSn=? AND B.State!=2;");
+			$posts = $this->__db_mobile->prepare("SELECT A.pid,A.cid,A.content FROM PDA_HTC_Comments_New A, UserState B WHERE A.cid= B.CommentSn AND B.postSn = ? AND B.State!=2;");
 			
-			$posts->bindParam( 1, $postSn , PDO::PARAM_INT );
+			$posts->bindParam( 1, $postSn , PDO::PARAM_STR );
 			$posts->execute();
 		} catch (Exception $e) {
 			die ($e);
@@ -152,12 +177,18 @@ class User{
 		} catch (Exception $e) {
 			die ($e);
 		}
+
 		while($row = $posts->fetch(PDO::FETCH_ASSOC) ) {
-			$meta['title'] = $row['title'];
+			if($row!=''){
+				$meta['title'] = $row['title'];
+			}else{
+				$meta['title'] = '';
+			}
 		}
 		$bindOutput['meta'] = $meta;
 		$bindOutput['output'] = $output;
 		$bindOutput['debug'] = $postSn;
+		$bindOutput['sql'] = "SELECT A.pid,A.cid,A.content FROM PDA_HTC_Comments_New A, UserState B WHERE A.cid=B.CommentSn AND B.postSn=".$postSn." AND B.State!=2;";
 		return $bindOutput;
 	}
 	

@@ -2,6 +2,7 @@
 
 
 $(document).ready(function() {
+	//check user session
 	$.get('session.php',{'action':'check'},function(data){
 		if(data){
 			$('#login').html(data);
@@ -63,20 +64,34 @@ $(document).ready(function() {
 		}
 	});
 	
+
 	
 	// Neo added
 	hideLoading();
+	
+	//triger login
+	$('#passwd').keyup(function(event){
+		event = event || window.event;
+		if(event.keyCode==13){
+			showLoading();
+			login();
+		}
+	});
+	
 	$("#submit_btn").click(function(){
 		
 		login();
 		
 	});
-
 	
-	
-	
-	
-	
+	//#content length
+	var text_length = $('#content').width()*0.85;
+	$('.text').css({'width':text_length.toString()+"px",'max-width':text_length.toString()+"px"});
+	var flag = !-[1,];  
+	if(flag){
+		alert('建議使用Chrome、Firefox等瀏覽器已達最佳瀏覽效果!');
+		$('.text').css({'width':'800px'});
+	}
  });
  
  function login(){
@@ -109,9 +124,7 @@ $(document).ready(function() {
 			}
 		}
 	});
- 
- 
- 
+
  }
  
 function addAnnotation( commsn , anno , anno_type ){
@@ -119,13 +132,14 @@ function addAnnotation( commsn , anno , anno_type ){
 		url:"handler.php",
 		method:"GET",
 		dataType: 'json',
-		error:function(xhr){
-			alert("ajax error");
+		error:function(xhr,strError ){
+			//alert("Anotation ajax error "+commsn+","+anno+","+anno_type);
+			
 		},
 		data:{ 'Annotation':anno , "Type":anno_type , "CommentSn":commsn , 'method':'insert' },
 		success: function(response) {
 			hideLoading();
-			
+			$('#debug').html(response);
 		}
 	});
 
@@ -143,6 +157,7 @@ function markAsDone( CSn ){
 		success: function(response) {
 			hideLoading();
 			if($("#total").val()==0){
+				//alert('Next Post...');
 				window.location.reload();
 			}
 		}
@@ -167,8 +182,11 @@ function updateDB(obj){
 
 	var objarr = $(obj).parent().parent().children();
 
+	//產品和評論皆標記完成，以灰色顯示
 	if( objarr[0].getAttribute("pressed")==1 && objarr[1].getAttribute("pressed")==1 ){
-		$("#total").val( $("#total").val()-1 );
+		if($(obj).parent().parent().css('background-color') == "rgba(0, 0, 0, 0)"){
+			$("#total").val( $("#total").val()-1 );
+		}
 		$(obj).parent().parent().css('background','grey');
 		markAsDone( $(obj).attr('CommentSn') );
 	}

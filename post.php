@@ -16,17 +16,34 @@
 
 ?>
 
-<div id="showUsername">Hello! <?php echo $user->getName() ?> <a href="http://140.114.75.11:8080/ITRI/login.php?logout=1">登出</a></div>
-<div id='article_title'><?php echo "Title:<font color='red'>".$meta['title']."</font>" ?></div><br />
-
-<div id = 'count' >本篇尚有<input type="text" id='total' size=3 value=<?php echo $meta['count'];?>>筆資料需要標註<img id="loadingPic" width=16 height=16 src = 'img/loading.gif' /></div>
-<div id="help">
-	<img  src = 'img/positive.png' /> Product
-	<img  src = 'img/cpositive.png' /> Comment
+<div >
+	<div style='float:left'>
+		
+		<div id='article_title'>
+			<?php 
+			if(isset($out['meta']['title'])){
+				echo "Title:<font color='red'>".$meta['title']."</font>"; 
+			}else
+				echo 'No post available...'; 
+			?>
+		</div>
+		<br><br>
+		
+		<div id = 'count' >本篇尚有
+			<input type="text" id='total' size=3 value=<?php echo $meta['count'];?>>筆資料需要標註<img id="loadingPic" width=16 height=16 src = 'img/loading.gif' />
+		</div>
+		
+	</div>
+	<br>
+	<div id="help">
+		<img  src = 'img/positive.png' /> Product
+		<img  src = 'img/cpositive.png' /> Comment
+	</div>
 </div>
 
 
 <div id = 'content' >
+
 <table>
 <?php
 	$i = 0;
@@ -41,8 +58,8 @@
 			<?php
 		}
 		?>
-				<td class='text'><p><?php echo $value ?></p></td>
-				<td class='tag'>
+				<td class='text' style='max-width:816px;'><p><?php echo $value ?></p></td>
+				<td class='tag' >
 					<div class='Product' pressed=0 >
 						<img value=0 CommentSn=<?php echo $key ?> Type=0 title = 'Product: Mark as positive.' onclick = 'updateDB(this)' class = 'mark_btn' src = 'img/positive.png' />
 						<img value=1 CommentSn=<?php echo $key ?> Type=0 title = 'Product: Mark as negative.' onclick = 'updateDB(this)' class = 'mark_btn' src = 'img/negative.png' />
@@ -60,4 +77,9 @@
 	}
 ?>
 </table>
+</div>
+<div id="showUsername" >
+	<div>
+		Hello! <?php echo $user->getName() ?>&nbsp &nbsp<a class='submit' style='float:right' href="login.php?logout=1">Logout</a><a class='submit' style='float:right' href='admin.php'>Admin</a>
+	</div>
 </div>

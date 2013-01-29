@@ -58,7 +58,7 @@
 	// Create sync-state database
 	
 	try {
-		$db_mobile = new PDO('sqlite:Mobile.db');
+		$db_mobile = new PDO('sqlite:Baby.seg.db');
 	} catch (Exception $e) {
 		die ($e);
 	}
@@ -77,8 +77,8 @@
 	
 	
 	// State{ 0:New, 1:Processing, 2:Done }
-	// $db_mobile->exec("DROP TABLE UserState");
-	// $db_mobile->exec("CREATE TABLE IF NOT EXISTS UserState ( CommentSn , PostSn , UID , State )");
+	//$db_mobile->exec("DROP TABLE UserState");
+	//$db_mobile->exec("CREATE TABLE IF NOT EXISTS UserState ( CommentSn , PostSn , UID , State )");
 	
 	
 	// $res = $db_mobile->prepare("SELECT pid, cid FROM PDA_HTC_Comments");

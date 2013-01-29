@@ -16,38 +16,44 @@
 	-moz-box-shadow:  3px 3px 5px 0px #000;
 	-webkit-box-shadow:  3px 3px 5px 0px #000;
 	box-shadow:  3px 3px 5px 0px #000;
+	
 }
 
 .pressed{
-	-moz-box-shadow: inset 3px 3px 5px 6px #000;
-	-webkit-box-shadow: inset 3px 3px 5px 6px #000;
+	-moz-box-shadow: inset 3px 3px 5px 6px #000;/*for Firefox*/
+	-webkit-box-shadow: inset 3px 3px 5px 6px #000;/*for Safari and Chrome*/
 	box-shadow: inset 3px 3px 5px 6px #000;
 	opacity:0.3;
-
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='1', MakeShadow='true', ShadowOpacity='0.40');/*for IE*/
 }
 
 
 
-#title {
+.title {
 	margin-top:24px;
-	background:grey;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #333;
+	background: #111 url(../img/bar_gradient.png) top repeat-x;
+
 }
 .sub-title {
 	text-align:center;
-	font-family:Comic Sans MS;
 	color:#ffffff;
 	font-size:small;
 	height:50px;
 	line-height:50px;
-	
+	font-size:30px;
 }
 
 
 
-#title img {
+.title img {
 	width:55%;
 }
-#container {
+.container {
 	position:relative;
 	width:960px; /* use jQuery to setup */
 	height:auto;
@@ -57,7 +63,8 @@
 
 #content{
 	width:100%;
-	height:500px;
+	height:650px;
+	max-width:100%;
 	background-color:#ffffff;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
@@ -68,30 +75,20 @@
 	overflow: auto;
 	z-index:1;
 	position: relative;
+	float:left;
 }
 .text{
 	text-align:left;
-	
-	
-	
-	width:85%;
-	
 	
 }
 
 #help{
 	left:500px;
-	position:relative;
-	float:left;
+	float:right;
 }
 
 .tag{
-	
-	
 	/*border:solid 1px #000;*/
-	
-	
-	
 }
 
 
@@ -103,13 +100,12 @@
 	background:#FFF68F;
 }
 /*-------------------------------------- BOTTOM ---------------------------------------*/
-#bot{
-	margin-top:24px;
-	margin-bottom:24px;
+.bot{
+	margin-top:10%;
 }
-#bot a { color:#777; }
-#bot a:hover { color:#444; }
-#bot a:active { color:red;}
+.bot a { color:#777; }
+.bot a:hover { color:#444; }
+.bot a:active { color:red;}
 
 
 /*-------------------------- load box --------------------------*/
@@ -181,6 +177,7 @@
 }
 #article_title{
 	float:left;
+	font-weight:bolder;
 }
 #count{
 	display:block;
@@ -194,6 +191,75 @@
 	background:red;
 }
 
+.login_page{
+	background:#E7E2DA;
+	
+	float:center;
+	width:250px;
+	height:180px;
+	padding-left:5px;
+	padding-top:5px;
+	border:solid 1px #ddd6cb ;
+	margin: 0px auto;
+	margin-top:5%;
+	margin-bottom:30%;
+}
+.label{
+	color:black;
+	float:left;
+	font-size:13px;
+}
+.top_label{
+	color:gray;
+	float:left;
+	font-size:15px;
+}
+.area{
+	float:left;
+}
+.submit{
+	float:left;
+	color:#ffffff;
+	border:1px solid #3079ED;
+	text-shadow:0 1px rgba(0, 0, 0, 0.1);
+	background:#4787ED;
+	border-radius: 5px;
+	border-top-left-radius:5px;
+	cursor:default;
+}
+.submit:hover{
+	background:#3078eb;
+	cursor:pointer;
+}
+.welcome{
+	padding-top:10px;
+	position: absolute; 
+	top: 0;
+	right:0;
+}
+a{
+text-decoration:none;
+color:white;
+}
 #showUsername{
-
+	/*top:0;
+	right:0;
+	position:static;
+	float:left;*/
+	 position: fixed; 
+    top: 0px;  
+    right: 0px;
+	padding: 0;
+    margin: 0;
+}
+th{
+	background:#3079ED;
+	color:white;
+}
+.banner{
+	color:#000000;
+	cursor:default;
+	width:auto;
+	float:left;
+	margin-left:10%;
 }

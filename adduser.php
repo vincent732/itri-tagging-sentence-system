@@ -26,7 +26,7 @@
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
-	<title>產品屬性標記</title>
+	<title>口碑標記</title>
 	<!-- css -->
 	<link type="text/css" rel="stylesheet" href="css/main.css" />
 	<!-- javascript -->
@@ -36,16 +36,35 @@
 
 </head>
 <body class="body">
-	<h1>新增使用者</h1>
-	<?php if( array_key_exists( "msg" , $_GET ) ){ echo $_GET['msg']; }?>
-	<br />
-	<form name="adduser_form" action="handler.php" method="GET" >
-	Username: <input name="uname" type="text" size=40 />
-	Password: <input name="passwd" type="password" size=40 />
-	email: <input name="email" type="text" size=40 />
-	<input name="method" type="hidden" value="addUser" />
-	<input type="submit" value="送出" />
-	</form>
-	
+	<div class="container">
+		<div class = 'title'>
+				<div class="sub-title"><a href='index.php'>口碑標記</a></div>
+				
+		</div>
+		
+		<?php if( array_key_exists( "msg" , $_GET ) ){ echo $_GET['msg']; }?>
+		<br />
+		<div class='login_page'>
+			<form name="adduser_form" action="handler.php" method="GET" >
+			<div class='top_label'>Sign up</div><br>
+			
+			<div class='label'>username</div> 
+			<input class='area' name="uname" type="text" size=31 />
+			<div class='label'>password</div> 
+			<input class='area' name="passwd" type="password" size=31 />
+			<div class='label'>email</div> 
+			<input class='area' name="email" type="text" size=31 />
+			<input name="method" type="hidden" value="addUser" />
+			<input class='submit' type="submit" value="Sign up" />
+			
+			</form>
+		</div>
+		
+		<div class="bot">
+			
+			<br>
+				建議使用Chrome瀏覽器已達最佳瀏覽效果!
+		</div>
+	</div>
 </body>
 </html>

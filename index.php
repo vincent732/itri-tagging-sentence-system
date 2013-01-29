@@ -13,7 +13,7 @@
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
-	<title>產品屬性標記</title>
+	<title>口碑標記</title>
 	<!-- css -->
 	<link type="text/css" rel="stylesheet" href="css/main.css" />
 	<!-- javascript -->
@@ -23,10 +23,10 @@
 
 </head>
 <body class="body">
-	<div id="container">
+	<div class="container">
 		<!--- title -->
-		<div id = 'title'>
-			<div class="sub-title">產品屬性標記</div>
+		<div class = 'title'>
+			<div class="sub-title"><a href='index.php'>口碑標記</a></div>
 		</div>
 		<div id="page" style = "display:block">
 				<?php 
@@ -34,23 +34,31 @@
 					include("post.php"); 
 				else{
 				?>
-				<div id="login_page">
-					<img id="loadingPic" width=16 height=16 src = 'img/loading.gif' />
+				
+				<div class="login_page">
+					<div class='top_label'>Sign in</div><br>
 					<form id="login_form">
-						帳號: <input type='text' id="username" name='username' />
-						密碼: <input type='password' id="passwd" name='passwd' />
-						<input id="submit_btn" type='button' value="submit" onClick="showLoading()" />
+						<div class='label'>account</div><br>
+						<input class='area' type='text' id="username" name='username' /><br><br>
+						<div class='label'>password </div><br>
+						<input class='area' type='password' id="passwd" name='passwd' /><br><br>
+						<input id="submit_btn" class='submit' type='button' value="Login" onClick="showLoading()" />
+						
+						<div style='padding-left:5px;text-align:center;' class='label'><a href='adduser.php'>Create a new account</a></div>
+						<img id="loadingPic" style='display:none' width=16 height=16 src = 'img/loading.gif' />
 					</form>
 				</div>
-				
 				<?php }?>
 		</div>
 		<!---Bottom -->
-		<div id="bot">
-			<div>
+		
+		<div class="bot">
+			<!--<div>
 				<a href = 'http://nlp.cs.nthu.edu.tw/' target='_blank'>NTHU NLP Lab</a>&
 				<a href = 'http://www.itri.org.tw/chi/icl/' target='_blank'>ITRI</a>
 			</div>
+			<br>-->
+				建議使用IE9、Firefox或Chrome等瀏覽器瀏覽.
 		</div>
 		
 	</div>
