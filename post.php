@@ -9,7 +9,7 @@
 	else
 		die("");
 	$out = $user->getPost();
-	
+	echo $out;	
 	$output = $out['output'];
 	$meta = $out['meta'];
 	
