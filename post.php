@@ -10,6 +10,7 @@
 		die("");
 	echo "start";
 	$out = $user->getPost();
+	echo "post";
 	$output = $out['output'];
 	$meta = $out['meta'];
 	
