@@ -4,6 +4,7 @@
 <?php //HTML Code ?>
 <?php 
 	$uid=validation();
+	echo $uid;
 	if(validation())
 		$user = new User( $uid );
 	else
