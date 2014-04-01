@@ -23,7 +23,7 @@ if( array_key_exists( 'username' , $_GET ) ){
 		$cur->bindParam( 1 , $uname );
 		$cur->execute();
 		$res = $cur->fetch();
-		
+		echo $res[0].$uname;	
 		if( $passwd == $res[0] ){
 			$_SESSION['uid'] = $res[1];
 			echo json_encode(1);
