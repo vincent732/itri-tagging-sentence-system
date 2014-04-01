@@ -4,13 +4,12 @@
 <?php //HTML Code ?>
 <?php 
 	$uid=validation();
-	echo $uid;
 	if(validation())
 		$user = new User( $uid );
 	else
 		die("");
+	echo "start";
 	$out = $user->getPost();
-	echo $out;	
 	$output = $out['output'];
 	$meta = $out['meta'];
 	
