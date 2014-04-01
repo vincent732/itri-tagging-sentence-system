@@ -143,7 +143,7 @@ class User{
 				
 				$postSn = $posts->fetch(PDO::FETCH_ASSOC);
 				$postSn = $postSn['PostSn'];
-				
+				echo $postSn;
 				// Mark as processing
 				$this->mark_as_processing($postSn);
 			}
@@ -157,13 +157,13 @@ class User{
 		} catch (Exception $e) {
 			die ($e);
 		}
-		
+		echo 'ok';
 		$output = array();
 		$meta = array();
 		$bindOutput = array();
 		$pid = '';
 		while($row = $posts->fetch(PDO::FETCH_ASSOC) ) {
-			
+			echo $row['pid'];
 			if($pid == '')
 			  $pid = $row['pid'];
 			$output[$row['cid']] = $row['content'];
